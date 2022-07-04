@@ -44,24 +44,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许分享</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" name="is_share" value="1" {{if $space}} {{if eq $space.is_share "1"}} checked="checked" {{end}} {{else}} checked="checked" {{end}} placeholder="">
-                    </div>
-                    <div class="col-sm-3 form-comment">
-                        <span class="text-danger"> * 该空间下的文档是否允许分享</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许导出</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" name="is_export" value="1" {{if $space}} {{if eq $space.is_export "1"}} checked="checked" {{end}} {{end}} placeholder="">
-                    </div>
-                    <div class="col-sm-3 form-comment">
-                        <span class="text-danger"> * 该空间下的文档是否允许导出</span>
-                    </div>
-                </div>
+<!--                <div class="form-group">-->
+<!--                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许分享</label>-->
+<!--                    <div class="col-sm-1">-->
+<!--                        <input type="checkbox" name="is_share" value="1" {{if $space}} {{if eq $space.is_share "1"}} checked="checked" {{end}} {{else}} checked="checked" {{end}} placeholder="">-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3 form-comment">-->
+<!--                        <span class="text-danger"> * 该空间下的文档是否允许分享</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许导出</label>-->
+<!--                    <div class="col-sm-1">-->
+<!--                        <input type="checkbox" name="is_export" value="1" {{if $space}} {{if eq $space.is_export "1"}} checked="checked" {{end}} {{end}} placeholder="">-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3 form-comment">-->
+<!--                        <span class="text-danger"> * 该空间下的文档是否允许导出</span>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="button" onclick="Form.ajaxSubmit(this.form, {{if $space}} true {{else}} false {{end}});" class="btn btn-primary">保存</button>

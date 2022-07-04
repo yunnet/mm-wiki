@@ -253,6 +253,8 @@ func (d *Document) Insert(documentValue map[string]interface{}) (id int64, err e
 		"name":      documentValue["name"].(string),
 		"type":      fmt.Sprintf("%d", documentValue["type"].(int)),
 		"path":      documentValue["path"].(string),
+		"is_share":  documentValue["is_share"].(string),
+		"is_export": documentValue["is_export"].(string),
 	}
 	_, pageFile, err := d.GetParentDocumentsByDocument(document)
 	err = utils.Document.Create(pageFile)

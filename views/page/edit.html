@@ -1,26 +1,66 @@
 <div class="container-fluid" style="height: 100%">
-    <form id="page_form" action="/page/modify" method="post" style="height: 98%" onsubmit="return false">
+    <form id="page_form" class="form-horizontal" action="/page/modify" method="post" style="height: 90%" onsubmit="return false">
     <div class="row">{{$pageContent := .page_content}}{{$document := .document}}
         <div class="col-md-12">
             <input type="hidden" name="document_id" value="{{$document.document_id}}">
-            <div class="row">
-                <div class="col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
                     <input type="text" name="name" class="form-control" placeholder="请输入文档名称" value="{{$document.name}}" {{if eq $document.parent_id "0"}} readonly="readonly" {{end}}>
                 </div>
-                <div class="col-md-2 text-center" >
-                    <button type="button" class="btn btn-primary" onclick="Page.ajaxSave(this.form, {{.sendEmail}}, {{.autoFollowDoc}})"><i class="fa fa-save"></i> 保存</button>
-                    <button type="button" class="btn btn-default" onclick="Page.cancelSave('确定要放弃此次修改吗?', '/document/index?document_id={{$document.document_id}}')"><i class="fa fa-mail-reply"></i> 取消</button>
+                <div class="panel-body">
+                    <div class="col-md-10" >
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label"><span class="text-danger"> * </span> 允许分享 </label>
+                                <input type="checkbox" name="is_share" value="1" {{if eq $document.is_share "1"}} checked="checked" {{end}}>
+                            </div>
+                            <div class="col-sm-10 form-comment">
+                                <span class="text-danger"> * 该文档是否允许分享</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label"><span class="text-danger"> * </span> 允许导出 </label>
+                                <input type="checkbox" name="is_export" value="1" {{if eq $document.is_export "1"}} checked="checked" {{end}}>
+                            </div>
+                            <div class="col-sm-10 form-comment">
+                                <span class="text-danger"> * 该文档是否允许导出</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-right" >
+                        <div class="row">
+                            <button type="button" class="btn btn-primary" onclick="Page.ajaxSave(this.form, {{.sendEmail}}, {{.autoFollowDoc}})"><i class="fa fa-save"></i> 保存</button>
+                            <button type="button" class="btn btn-default" onclick="Page.cancelSave('确定要放弃此次修改吗?', '/document/index?document_id={{$document.document_id}}')"><i class="fa fa-mail-reply"></i> 取消</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+
         </div>
     </div>
     <div class="row" style="height: 98%; padding-top: 8px;">
-        <div class="col-md-12" style="height: 98%">
-            <div id="document_page_editor" style="height: 98%"></div>
+        <div class="col-md-12" style="height: 90%">
+            <div id="document_page_editor" style="height: 90%"></div>
         </div>
     </div>
     </form>
 </div>
+<link rel="stylesheet" href="../../static/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
+<script src="../../static/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // is_display
+        $("input[type='checkbox']").bootstrapSwitch({
+            size: 'small',
+            onText: '是',
+            offText: '否'
+        });
+    });
+</script>
+
 <script type="text/javascript">
     if(parent.layoutClose) {
         parent.layoutClose();

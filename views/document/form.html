@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid">
     <div id="failedBox" class="hide"></div>
     <div class="panel panel-default">
@@ -43,6 +45,25 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许分享</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="is_share" value="1" checked="checked">
+                    </div>
+                    <div class="col-sm-3 form-comment">
+                        <span class="text-danger"> * 该文档是否允许分享</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><span class="text-danger"> * </span>允许导出</label>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="is_export" value="1" checked="checked">
+                    </div>
+                    <div class="col-sm-3 form-comment">
+                        <span class="text-danger"> * 该文档是否允许导出</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="button" onclick="Form.ajaxSubmit(this.form, true);" class="btn btn-primary">保存</button>
                     </div>
@@ -51,3 +72,16 @@
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="../../static/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
+<script src="../../static/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // is_display
+        $("input[type='checkbox']").bootstrapSwitch({
+            size: 'small',
+            onText: '是',
+            offText: '否'
+        });
+    });
+</script>

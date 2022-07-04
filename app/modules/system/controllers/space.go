@@ -29,8 +29,8 @@ func (this *SpaceController) Save() {
 	description := strings.TrimSpace(this.GetString("description", ""))
 	tags := strings.TrimSpace(this.GetString("tags", ""))
 	visitLevel := strings.TrimSpace(this.GetString("visit_level", "public"))
-	isShare := strings.TrimSpace(this.GetString("is_share", "0"))
-	isExport := strings.TrimSpace(this.GetString("is_export", "0"))
+	isShare := "1"
+	isExport := "1"
 
 	if name == "" {
 		this.jsonError("空间名称不能为空！")
@@ -74,6 +74,8 @@ func (this *SpaceController) Save() {
 		"path":           "0",
 		"create_user_id": this.UserId,
 		"edit_user_id":   this.UserId,
+		"is_share":       "1",
+		"is_export":      "1",
 	}
 	_, err = models.DocumentModel.Insert(spaceDocument)
 	if err != nil {
@@ -249,7 +251,7 @@ func (this *SpaceController) Member() {
 		}
 	}
 	// 获取当前空间下的所有user
-	spaceAllUsers, err := models.SpaceUserModel.GetSpaceUsersBySpaceId(spaceId);
+	spaceAllUsers, err := models.SpaceUserModel.GetSpaceUsersBySpaceId(spaceId)
 	if err != nil {
 		this.ErrorLog("获取空间 " + spaceId + " 成员列表失败: " + err.Error())
 		this.ViewError("获取空间所有成员列表失败！", "/system/space/list")

@@ -179,6 +179,8 @@ func (this *PageController) Modify() {
 	comment := strings.TrimSpace(this.GetString("comment", ""))
 	isNoticeUser := strings.TrimSpace(this.GetString("is_notice_user", "0"))
 	isFollowDoc := strings.TrimSpace(this.GetString("is_follow_doc", "0"))
+	isShare := strings.TrimSpace(this.GetString("is_share", "0"))
+	isExport := strings.TrimSpace(this.GetString("is_export", "0"))
 
 	// rm document_page_editor-markdown-doc
 	this.Ctx.Request.PostForm.Del("document_page_editor-markdown-doc")
@@ -248,6 +250,8 @@ func (this *PageController) Modify() {
 	updateValue := map[string]interface{}{
 		"name":         newName,
 		"edit_user_id": this.UserId,
+		"is_share":     isShare,
+		"is_export":    isExport,
 	}
 	_, err = models.DocumentModel.UpdateDBAndFile(documentId, spaceId, document, documentContent, updateValue, comment)
 	if err != nil {
@@ -390,14 +394,9 @@ func (this *PageController) Export() {
 		this.ViewError("文档所在空间不存在！")
 	}
 
-	// check space document privilege
-	isVisit, _, _ := this.GetDocumentPrivilege(space)
+	// check document privilege
+	isVisit := document["is_export"] == "1"
 	if !isVisit {
-		this.ViewError("您没有权限导出该空间下文档！")
-	}
-
-	// check space is allow export
-	if space["is_export"] != fmt.Sprintf("%d", models.Space_Download_True) {
 		this.ViewError("该文档不允许被导出！")
 	}
 

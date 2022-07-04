@@ -76,7 +76,6 @@ func (this *DocumentController) Index() {
 
 // add document
 func (this *DocumentController) Add() {
-
 	spaceId := this.GetString("space_id", "0")
 	parentId := this.GetString("parent_id", "0")
 
@@ -129,12 +128,13 @@ func (this *DocumentController) Add() {
 
 // save document
 func (this *DocumentController) Save() {
-
 	if !this.IsPost() {
 		this.ViewError("请求方式有误！", "/main/index")
 	}
 	spaceId := strings.TrimSpace(this.GetString("space_id", "0"))
 	parentId := strings.TrimSpace(this.GetString("parent_id", "0"))
+	isShare := strings.TrimSpace(this.GetString("is_share", "0"))
+	isExport := strings.TrimSpace(this.GetString("is_export", "0"))
 	docType, _ := this.GetInt("type", models.Document_Type_Page)
 	name := strings.TrimSpace(this.GetString("name", ""))
 
@@ -207,6 +207,8 @@ func (this *DocumentController) Save() {
 		"path":           parentDocument["path"] + "," + parentId,
 		"create_user_id": this.UserId,
 		"edit_user_id":   this.UserId,
+		"is_share":       isShare,
+		"is_export":      isExport,
 	}
 	documentId, err := models.DocumentModel.Insert(insertDocument)
 	if err != nil {

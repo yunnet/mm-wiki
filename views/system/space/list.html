@@ -27,8 +27,8 @@
                 <th>描述</th>
                 <th class="w15p">标签</th>
                 <th class="w8p">访问级别</th>
-                <th class="w8p">分享</th>
-                <th class="w8p">导出</th>
+<!--                <th class="w8p">分享</th>-->
+<!--                <th class="w8p">导出</th>-->
                 <th class="w17p">操作</th>
             </tr>
             </thead>
@@ -48,20 +48,20 @@
                      <label class="text text-primary">Public</label>
                  {{end}}
                 </td>
-                <td class="center">
-                {{if eq $space.is_share "1"}}
-                    <span class="label label-success">是</span>
-                {{else}}
-                    <span class="label label-danger">否</span>
-                {{end}}
-                </td>
-                <td class="center">
-                {{if eq $space.is_export "1"}}
-                    <span class="label label-success">是</span>
-                {{else}}
-                    <span class="label label-danger">否</span>
-                {{end}}
-                </td>
+<!--                <td class="center">-->
+<!--                {{if eq $space.is_share "1"}}-->
+<!--                    <span class="label label-success">是</span>-->
+<!--                {{else}}-->
+<!--                    <span class="label label-danger">否</span>-->
+<!--                {{end}}-->
+<!--                </td>-->
+<!--                <td class="center">-->
+<!--                {{if eq $space.is_export "1"}}-->
+<!--                    <span class="label label-success">是</span>-->
+<!--                {{else}}-->
+<!--                    <span class="label label-danger">否</span>-->
+<!--                {{end}}-->
+<!--                </td>-->
                 <td class="center">
                     <a name="edit" data-link="/system/space/edit?space_id={{$space.space_id}}"><i class="glyphicon glyphicon-edit"></i>修改</a>
                     <a name="user" data-link="/system/space/member?space_id={{$space.space_id}}"><i class="fa fa-group"></i>成员</a>
