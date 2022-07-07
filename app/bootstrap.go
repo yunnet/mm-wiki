@@ -164,8 +164,12 @@ func initDocumentDir() {
 	}
 	ok, _ := utils.File.PathIsExists(docRootDir)
 	if !ok {
-		logs.Error("document root dir " + docRootDir + " is not exists!")
-		os.Exit(1)
+		if err := utils.ForceDirectories(docRootDir); err == nil {
+			logs.Error("document root dir " + docRootDir + " is not exists! Now force dir: " + docRootDir)
+		} else {
+			logs.Error("document root dir " + docRootDir + " is not exists!")
+			os.Exit(1)
+		}
 	}
 
 	documentAbsDir, err := filepath.Abs(docRootDir)

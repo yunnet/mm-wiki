@@ -18,6 +18,30 @@ func NewFile() *file {
 type file struct {
 }
 
+func ForceDirectories(path string) error {
+	if len(path) == 0 {
+		return errors.New("path length is zero")
+	}
+
+	if IsDirExists(path) {
+		return nil
+	} else {
+		if err := os.MkdirAll(path, 0777); err != nil {
+			return errors.New("create dir fail")
+		} else {
+			return nil
+		}
+	}
+}
+
+func IsDirExists(path string) bool {
+	if fi, err := os.Stat(path); err != nil {
+		return os.IsExist(err)
+	} else {
+		return fi.IsDir()
+	}
+}
+
 // get file contents
 func (f *file) GetFileContents(filePath string) (content string, err error) {
 	defer func(err *error) {
