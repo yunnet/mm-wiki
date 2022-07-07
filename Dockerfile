@@ -4,10 +4,10 @@ ENV TZ=Asia/Shanghai
 
 WORKDIR /app
 
-RUN git clone https://github.com/yunnet/mm-wiki.git
+RUN git clone https://gitee.com/yunnet/mm-wiki.git
 
 
-FROM golang:1.14.1-alpine
+FROM golang:1.18.3-alpine3.16
 
 COPY --from=0 /app/mm-wiki /app/mm-wiki
 

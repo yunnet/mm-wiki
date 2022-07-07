@@ -127,6 +127,8 @@ CREATE TABLE `mw_document` (
   `type` tinyint(3) NOT NULL DEFAULT '1' COMMENT '文档类型 1 page 2 dir',
   `path` char(30) NOT NULL DEFAULT '0' COMMENT '存储根文档到父文档的 document_id 值, 格式 0,1,2,...',
   `sequence` int(10) NOT NULL DEFAULT '0' COMMENT '排序号(越小越靠前)',
+  `is_share` tinyint(3) NOT NULL DEFAULT '1' COMMENT '文档是否允许分享 0 否 1 是',
+  `is_export` tinyint(3) NOT NULL DEFAULT '1' COMMENT '文档是否允许导出 0 否 1 是',
   `create_user_id` int(10) NOT NULL DEFAULT '0' COMMENT '创建用户 id',
   `edit_user_id` int(10) NOT NULL DEFAULT '0' COMMENT '最后修改用户 id',
   `is_delete` tinyint(3) NOT NULL DEFAULT '0' COMMENT '是否删除 0 否 1 是',
